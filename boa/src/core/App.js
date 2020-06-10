@@ -1,9 +1,13 @@
-import React from 'react';
-import RouterComponent from './Router';
+import React from "react";
+import RouterComponent from "./Router";
+import AuthComponent from "./Auth";
 
-
-function App() {
-  return <RouterComponent />
+export default class App extends React.Component {
+  render() {
+    return (
+      <AuthComponent>
+        <RouterComponent />
+      </AuthComponent>
+    );
+  }
 }
-
-export default App;
