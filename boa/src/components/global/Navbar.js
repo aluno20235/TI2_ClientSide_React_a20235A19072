@@ -15,9 +15,6 @@ export default class NavbarComponent extends React.Component {
                             <Nav.Link as={NavLink} exact to="/">
                                 Home
               </Nav.Link>
-                            <Nav.Link as={NavLink} to="/about">
-                                About
-              </Nav.Link>
                             <Nav.Link as={NavLink} to="/album/list">
                                 Albuns
                   </Nav.Link>
@@ -27,6 +24,9 @@ export default class NavbarComponent extends React.Component {
                             <Nav.Link as={NavLink} to="/genre/list">
                                 Géneros
                   </Nav.Link>
+                            <Nav.Link as={NavLink} to="/about">
+                                About
+              </Nav.Link>
                         </Nav>
                         <Nav>
                             {user ? (

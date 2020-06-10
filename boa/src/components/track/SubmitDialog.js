@@ -1,42 +1,32 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import bookService from "../../services/book";
+import trackService from "../../services/track";
 
 export default class SubmitDialogComponent extends React.Component {
   toEdit = false;
 
   constructor(props) {
     super(props);
-    this.toEdit = props.book !== undefined;
+    this.toEdit = props.track !== undefined;
     this.state = this.getFormState();
   }
 
   getFormState() {
     return this.toEdit
-      ? { ...this.props.book, cover: null }
-      : { title: "", collection: "", author: "", publish_year: 0, cover: null };
+      ? { ...this.props.track }
+      : { album: "", ntrack: 0, track: "", duration: "" };
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
-    const jsonData = (({ title, collection, author, publish_year }) => ({ title, collection, author, publish_year }))(
+    const jsonData = (({ album, ntrack, track, duration }) => ({ album, ntrack, track, duration }))(
       this.state
     );
     if (this.toEdit) {
-      const { _id, cover } = this.props.book;
-      bookService.update(_id, jsonData).then(() => this.handleCoverSubmit({ ...jsonData, _id, cover }));
+      const { _id } = this.props.track;
+      trackService.update(_id, jsonData);
     } else {
-      bookService.create(jsonData).then((result) => this.handleCoverSubmit({ ...jsonData, _id: result._id }));
-    }
-  }
-
-  handleCoverSubmit(bookData) {
-    if (this.state.cover) {
-      bookService.setCover(bookData._id, this.state.cover).then((result) => {
-        this.props.submited({ ...bookData, cover: result.url });
-      });
-    } else {
-      this.props.submited(bookData);
+      trackService.create(jsonData);
     }
   }
 
@@ -45,51 +35,40 @@ export default class SubmitDialogComponent extends React.Component {
     this.props.handleClose();
   }
 
-  handleSelectCover(evt) {
-    const formData = new FormData();
-    formData.append("cover", evt.target.files[0]);
-    this.setState({ cover: formData });
-  }
-
   render() {
     const { show } = this.props;
-    const { title, collection, author, publish_year } = this.state;
+    const { album, ntrack, track, duration } = this.state;
 
     return (
       <Modal show={show} onHide={this.handleCancel}>
         <Modal.Header>
-          <Modal.Title>{this.toEdit ? "Edit book" : "Create book"}</Modal.Title>
+          <Modal.Title>{this.toEdit ? "Edit track" : "Create track"}</Modal.Title>
         </Modal.Header>
         <Form onSubmit={(evt) => this.handleSubmit(evt)}>
           <Modal.Body>
             <Form.Group>
-              <Form.Label>Title</Form.Label>
-              <Form.Control value={title} onChange={(evt) => this.setState({ title: evt.target.value })} />
+              <Form.Label>Album</Form.Label>
+              <Form.Control value={album} onChange={(evt) => this.setState({ album: evt.target.value })} />
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Collection</Form.Label>
-              <Form.Control value={collection} onChange={(evt) => this.setState({ collection: evt.target.value })} />
+              <Form.Label>Track Number</Form.Label>
+              <Form.Control type="number" value={ntrack} onChange={(evt) => this.setState({ ntrack: evt.target.value })} />
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Author</Form.Label>
-              <Form.Control value={author} onChange={(evt) => this.setState({ author: evt.target.value })} />
+              <Form.Label>Track</Form.Label>
+              <Form.Control value={track} onChange={(evt) => this.setState({ track: evt.target.value })} />
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Publish year</Form.Label>
+              <Form.Label>Duration</Form.Label>
               <Form.Control
-                type="number"
-                value={publish_year}
-                onChange={(evt) => this.setState({ publish_year: evt.target.value })}
+                value={duration}
+                onChange={(evt) => this.setState({ duration: evt.target.value })}
               />
             </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Cover</Form.Label>
-              <Form.Control type="file" onChange={(evt) => this.handleSelectCover(evt)} />
-            </Form.Group>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => this.handleCancel()}>

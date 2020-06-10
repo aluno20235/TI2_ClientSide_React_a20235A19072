@@ -1,42 +1,42 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import bookService from "../../services/book";
+import albumService from "../../services/album";
 
 export default class SubmitDialogComponent extends React.Component {
   toEdit = false;
 
   constructor(props) {
     super(props);
-    this.toEdit = props.book !== undefined;
+    this.toEdit = props.album !== undefined;
     this.state = this.getFormState();
   }
 
   getFormState() {
     return this.toEdit
-      ? { ...this.props.book, cover: null }
-      : { title: "", collection: "", author: "", publish_year: 0, cover: null };
+      ? { ...this.props.album, cover: null }
+      : { album: "", genre: "", year: 0, artist: "", cover: null };
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
-    const jsonData = (({ title, collection, author, publish_year }) => ({ title, collection, author, publish_year }))(
+    const jsonData = (({ album, genre, year, artist }) => ({ album, genre, year, artist }))(
       this.state
     );
     if (this.toEdit) {
-      const { _id, cover } = this.props.book;
-      bookService.update(_id, jsonData).then(() => this.handleCoverSubmit({ ...jsonData, _id, cover }));
+      const { _id, cover } = this.props.album;
+      albumService.update(_id, jsonData).then(() => this.handleCoverSubmit({ ...jsonData, _id, cover }));
     } else {
-      bookService.create(jsonData).then((result) => this.handleCoverSubmit({ ...jsonData, _id: result._id }));
+      albumService.create(jsonData).then((result) => this.handleCoverSubmit({ ...jsonData, _id: result._id }));
     }
   }
 
-  handleCoverSubmit(bookData) {
+  handleCoverSubmit(albumData) {
     if (this.state.cover) {
-      bookService.setCover(bookData._id, this.state.cover).then((result) => {
-        this.props.submited({ ...bookData, cover: result.url });
+      albumService.setCover(albumData._id, this.state.cover).then((result) => {
+        this.props.submited({ ...albumData, cover: result.url });
       });
     } else {
-      this.props.submited(bookData);
+      this.props.submited(albumData);
     }
   }
 
@@ -53,36 +53,35 @@ export default class SubmitDialogComponent extends React.Component {
 
   render() {
     const { show } = this.props;
-    const { title, collection, author, publish_year } = this.state;
+    const { album, genre, year, artist } = this.state;
 
     return (
       <Modal show={show} onHide={this.handleCancel}>
         <Modal.Header>
-          <Modal.Title>{this.toEdit ? "Edit book" : "Create book"}</Modal.Title>
+          <Modal.Title>{this.toEdit ? "Edit album" : "Create album"}</Modal.Title>
         </Modal.Header>
         <Form onSubmit={(evt) => this.handleSubmit(evt)}>
           <Modal.Body>
             <Form.Group>
-              <Form.Label>Title</Form.Label>
-              <Form.Control value={title} onChange={(evt) => this.setState({ title: evt.target.value })} />
+              <Form.Label>Album Title</Form.Label>
+              <Form.Control value={album} onChange={(evt) => this.setState({ album: evt.target.value })} />
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Collection</Form.Label>
-              <Form.Control value={collection} onChange={(evt) => this.setState({ collection: evt.target.value })} />
+              <Form.Label>Genre</Form.Label>
+              <Form.Control value={genre} onChange={(evt) => this.setState({ genre: evt.target.value })} />
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Author</Form.Label>
-              <Form.Control value={author} onChange={(evt) => this.setState({ author: evt.target.value })} />
+              <Form.Label>Publish Year</Form.Label>
+              <Form.Control type="number" value={year} onChange={(evt) => this.setState({ year: evt.target.value })} />
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Publish year</Form.Label>
+              <Form.Label>Artist</Form.Label>
               <Form.Control
-                type="number"
-                value={publish_year}
-                onChange={(evt) => this.setState({ publish_year: evt.target.value })}
+                value={artist}
+                onChange={(evt) => this.setState({ artist: evt.target.value })}
               />
             </Form.Group>
 

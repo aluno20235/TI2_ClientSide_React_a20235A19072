@@ -11,7 +11,7 @@ export default class RemoveDialogComponent extends React.Component {
   }
 
   handleRemove () {
-    bookService.remove (this.props.bookId).then (() => {
+    albumService.remove (this.props.albumId).then (() => {
       this.props.removed ();
     });
   }
@@ -22,7 +22,7 @@ export default class RemoveDialogComponent extends React.Component {
     return (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Remove book</Modal.Title>
+          <Modal.Title>Remove Album</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           If you proceed this action this element will be permenantly deleted from the system!

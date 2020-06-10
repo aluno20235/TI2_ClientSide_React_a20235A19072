@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSquare, faCheckSquare} from '@fortawesome/free-solid-svg-icons';
-import bookService from '../../services/book';
+import genreService from '../../services/genre';
 
 export default class RemoveDialogComponent extends React.Component {
   constructor (props) {
@@ -11,7 +11,7 @@ export default class RemoveDialogComponent extends React.Component {
   }
 
   handleRemove () {
-    bookService.remove (this.props.bookId).then (() => {
+    genreService.remove (this.props.genreId).then (() => {
       this.props.removed ();
     });
   }
@@ -22,7 +22,7 @@ export default class RemoveDialogComponent extends React.Component {
     return (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Remove book</Modal.Title>
+          <Modal.Title>Remove Genre</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           If you proceed this action this element will be permenantly deleted from the system!
