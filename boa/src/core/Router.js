@@ -26,12 +26,12 @@ export default class RouterComponent extends React.Component {
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/about" component={About} />
-          <PrivateRoute exact path="/album/list" component={AlbumListPage} />
-          <PrivateRoute exact path="/album/details/:id" component={AlbumDetailsPage} />
-          <PrivateRoute exact path="/artist/list" component={ArtistListPage} />
-          <PrivateRoute exact path="/artist/details/:id" component={ArtistDetailsPage} />
-          <PrivateRoute exact path="/genre/list" component={GenreListPage} />
-          <PrivateRoute exact path="/genre/details/:id" component={GenreDetailsPage} />
+          <Route exact path="/album/list" component={AlbumListPage} />
+          <Route exact path="/album/details/:id" component={AlbumDetailsPage} />
+          <Route exact path="/artist/list" component={ArtistListPage} />
+          <Route exact path="/artist/details/:id" component={ArtistDetailsPage} />
+          <Route exact path="/genre/list" component={GenreListPage} />
+          <Route exact path="/genre/details/:id" component={GenreDetailsPage} />
           <PrivateRoute roles={[roles.Admin]} exact path="/user/list" component={UserListPage} />
           <PrivateRoute roles={[roles.Admin]} exact path="/user/details/:id" component={UserDetailsPage} />
           <Route path="*" component={Home} />

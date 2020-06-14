@@ -19,14 +19,17 @@ export default class SubmitDialogComponent extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    const jsonData = (({ genre, description }) => ({ genre, description }))(
-      this.state
-    );
     if (this.toEdit) {
       const { _id } = this.props.genre;
-      genreService.update(_id, jsonData);
+      genreService
+        .update(_id, this.state)
+        .then(() => this.props.submited({ ...this.state, _id }))
+        .catch(ex => console.log(ex));
     } else {
-      genreService.create(jsonData);
+      genreService
+        .create(this.state)
+        .then(result => this.props.submited({ ...this.state, _id: result._id }))
+        .catch(ex => console.log(ex));
     }
   }
 

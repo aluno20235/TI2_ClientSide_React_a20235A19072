@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Col, Row, Jumbotron, Badge, Spinner, Alert } from "react-bootstrap";
+import { Container, Button, Col, Row, Jumbotron, Spinner, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import genreService from "../../services/genre";
@@ -41,6 +41,7 @@ export default class GenreDetailsPage extends React.Component {
                 <Col xs={6} md={8} lg={9}>
                   <h1>{genre.genre}</h1>
                   <h5>{genre._id}</h5>
+                  <h5>{genre.description}</h5>
                   <br />
                   <p>
                     <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>

@@ -1,36 +1,37 @@
 import React from 'react';
-import {Modal, Button} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSquare, faCheckSquare} from '@fortawesome/free-solid-svg-icons';
-import albumService from '../../services/album';
+import { Modal, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import artistService from '../../services/artist';
 
 export default class RemoveDialogComponent extends React.Component {
-  constructor (props) {
-    super (props);
-    this.state = {sure: false};
+  constructor(props) {
+    super(props);
+    this.state = { sure: false };
   }
 
-  handleRemove () {
-    albumService.remove (this.props.albumId).then (() => {
-      this.props.removed ();
-    });
+  handleRemove() {
+    artistService.remove(this.props.artistId)
+      .then(() => {
+        this.props.removed ();
+      });
   }
 
-  render () {
-    const {show, handleClose} = this.props;
-    const {sure} = this.state;
+  render() {
+    const { show, handleClose } = this.props;
+    const { sure } = this.state;
     return (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Remove Album</Modal.Title>
+          <Modal.Title>Remove Artist</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          If you proceed this action this element will be permenantly deleted from the system!
+          If you proceed this action this element will be permanently deleted from the system!
           <br />
           Are you sure?
           <FontAwesomeIcon
-            style={{marginLeft: 10}}
-            onClick={() => this.setState ({sure: !sure})}
+            style={{ marginLeft: 10 }}
+            onClick={() => this.setState({ sure: !sure })}
             icon={sure ? faCheckSquare : faSquare}
           />
         </Modal.Body>
@@ -38,9 +39,9 @@ export default class RemoveDialogComponent extends React.Component {
           <Button
             variant="danger"
             disabled={!sure}
-            onClick={() => this.handleRemove ()}
+            onClick={() => this.handleRemove()}
           >
-            Cancel
+            REMOVE
           </Button>
         </Modal.Footer>
       </Modal>

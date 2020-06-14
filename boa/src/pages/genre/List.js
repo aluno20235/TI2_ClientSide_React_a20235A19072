@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Table, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo, faPlus, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faInfo, faPlus } from "@fortawesome/free-solid-svg-icons";
 import services from "../../services";
 import SubmitDialogComponent from "../../components/genre/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
@@ -51,7 +51,8 @@ export default class GenreListPage extends React.Component {
             <FontAwesomeIcon icon={faPlus} />
             &nbsp;Add new genre
           </Button>
-          {<SearchFormComponent search={(text) => this.getList(text)} />}
+          {<SearchFormComponent
+           search={(text) => this.getList(text)} />}
         </div>
 
         <SubmitDialogComponent
@@ -64,7 +65,6 @@ export default class GenreListPage extends React.Component {
           <thead>
             <tr>
               <th>Genre</th>
-              <th>Description</th>
               <th />
             </tr>
           </thead>
@@ -72,7 +72,6 @@ export default class GenreListPage extends React.Component {
             {genres.map((genre, index) => (
               <tr key={`genre${index}`}>
                 <td>{genre.genre}</td>
-                <td>{genre.description}</td>
                 <td style={{ textAlign: "right" }}>
                   <Button
                     variant="outline-primary"
