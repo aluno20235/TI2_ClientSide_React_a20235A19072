@@ -5,7 +5,7 @@ import "./Auth.css";
 export default class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "", role: 2 };
+    this.state = { username: "", password: "", nome: "", email: "", role: 2 };
   }
   handleSubmit(evt) {
     evt.preventDefault();
@@ -15,7 +15,7 @@ export default class RegisterPage extends React.Component {
   }
 
   render() {
-    const { username, password, role } = this.state;
+    const { username, password, nome, email,  role } = this.state;
     return (
       <div id="auth-board">
         <Card style={{ width: "18rem" }}>
@@ -32,6 +32,22 @@ export default class RegisterPage extends React.Component {
                   type="password"
                   value={password}
                   onChange={(evt) => this.setState({ password: evt.target.value })}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Nome</Form.Label>
+                <Form.Control
+                  type="nome"
+                  value={nome}
+                  onChange={(evt) => this.setState({ nome: evt.target.value })}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  value={email}
+                  onChange={(evt) => this.setState({ email: evt.target.value })}
                 />
               </Form.Group>
               <Form.Group>

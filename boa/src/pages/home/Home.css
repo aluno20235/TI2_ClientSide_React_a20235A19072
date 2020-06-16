@@ -3,8 +3,15 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 250px;
+  width: 400px;
   pointer-events: none;
+}
+
+.parag{
+font-family: fantasy;
+font-size: 30px;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
