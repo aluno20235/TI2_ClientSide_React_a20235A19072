@@ -40,7 +40,9 @@ export default class AlbumDetailsPage extends React.Component {
               <Row>
                 <Col xs={6} md={8} lg={9}>
                   <h1>{album.album}</h1>
-                  <h5>{album._id}</h5>
+                  <h5>{album.artist}</h5>
+                  <h5>{album.year}</h5>
+                  <h5>{album.genre}</h5>
                   <br />
                   <p>
                     <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>

@@ -52,6 +52,7 @@ export default class GenreListPage extends React.Component {
             &nbsp;Add new genre
           </Button>
           {<SearchFormComponent
+           autocomplete
            search={(text) => this.getList(text)} />}
         </div>
 
