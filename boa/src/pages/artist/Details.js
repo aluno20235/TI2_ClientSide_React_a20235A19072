@@ -5,8 +5,12 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import artistService from "../../services/artist";
 import RemoveDialogComponent from "../../components/artist/RemoveDialog";
 import SubmitDialogComponent from "../../components/artist/SubmitDialog";
+import AuthContext from "../../configs/authContext";
+import roles from "../../configs/roles";
+
 
 export default class ArtistDetailsPage extends React.Component {
+  static contextType = AuthContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +30,7 @@ export default class ArtistDetailsPage extends React.Component {
 
   render() {
     const { artist, error, toRemove, toUpdate } = this.state;
-
+const {user}=this.context;
     return (
       <Container>
         <Button variant="outline-primary" style={{ margin: "10px 0" }} onClick={() => this.props.history.goBack()}>
@@ -46,15 +50,15 @@ export default class ArtistDetailsPage extends React.Component {
                   <h5>{artist._id}</h5>
                   <h5>{artist.description}</h5>
                   <br />
-                  <p>
+                  {user && <p>
                     <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>
                       Update
                     </Button>
                     &nbsp;
-                    <Button variant="danger" onClick={() => this.setState({ toRemove: true })}>
+                    {user.role===roles.Admin && <Button variant="danger" onClick={() => this.setState({ toRemove: true })}>
                       Remove
-                    </Button>
-                  </p>
+                    </Button>}
+                  </p>}
                 </Col>
               </Row>
             </Jumbotron>

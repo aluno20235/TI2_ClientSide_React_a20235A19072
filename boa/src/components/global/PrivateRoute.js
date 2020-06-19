@@ -11,9 +11,10 @@ export default class PrivateRoute extends React.Component {
       <Route
         {...rest}
         render={(props) =>
-          user && roles.some((r) => r === user.role) ? <Component {...props} /> : <Redirect to="/" />
+          user && (roles===undefined || roles.some((r) => r === user.role)) ? <Component {...props} /> : <Redirect to="/" />
         }
       />
     );
   }
 }
+
