@@ -5,8 +5,11 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import genreService from "../../services/genre";
 import RemoveDialogComponent from "../../components/genre/RemoveDialog";
 import SubmitDialogComponent from "../../components/genre/SubmitDialog";
+import AuthContext from "../../configs/authContext";
+import roles from "../../configs/roles";
 
 export default class GenreDetailsPage extends React.Component {
+  static contextType = AuthContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +29,7 @@ export default class GenreDetailsPage extends React.Component {
 
   render() {
     const { genre, error, toRemove, toUpdate } = this.state;
-
+    const { user } = this.context;
     return (
       <Container>
         <Button variant="outline-primary" style={{ margin: "10px 0" }} onClick={() => this.props.history.goBack()}>
@@ -43,15 +46,15 @@ export default class GenreDetailsPage extends React.Component {
                   <h5>{genre._id}</h5>
                   <h5>{genre.description}</h5>
                   <br />
-                  <p>
+                  {user && <p>
                     <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>
                       Update
                     </Button>
                     &nbsp;
-                    <Button variant="danger" onClick={() => this.setState({ toRemove: true })}>
+                    {user.role===roles.Admin && <Button variant="danger" onClick={() => this.setState({ toRemove: true })}>
                       Remove
-                    </Button>
-                  </p>
+                    </Button>}
+                  </p>}
                 </Col>
               </Row>
             </Jumbotron>
@@ -70,10 +73,10 @@ export default class GenreDetailsPage extends React.Component {
             />
           </div>
         ) : (
-          <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        )}
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          )}
       </Container>
     );
   }

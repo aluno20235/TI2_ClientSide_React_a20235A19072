@@ -51,7 +51,8 @@ export default class AlbumListPage extends React.Component {
             <FontAwesomeIcon icon={faPlus} />
             &nbsp;Add new album
           </Button>
-          {<SearchFormComponent search={(text) => this.getList(text)} />}
+          {<SearchFormComponent 
+            search={(text) => this.getList(text)} />}
         </div>
 
         <SubmitDialogComponent
@@ -64,6 +65,7 @@ export default class AlbumListPage extends React.Component {
           <thead>
             <tr>
               <th>Album</th>
+              <th>Artist</th>
               <th />
             </tr>
           </thead>
@@ -71,6 +73,7 @@ export default class AlbumListPage extends React.Component {
             {albuns.map((album, index) => (
               <tr key={`album${index}`}>
                 <td>{album.album}</td>
+                <td>{album.artist}</td>
                 <td style={{ textAlign: "right" }}>
                   <Button
                     variant="outline-primary"

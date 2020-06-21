@@ -74,6 +74,7 @@ export default class SubmitDialogComponent extends React.Component {
               <Form.Control 
               required true
               value={year} 
+              pattern="[0-2][0-9][0-9][0-9]"
               onChange={(evt) => this.setState({ year: evt.target.value })} />
             </Form.Group>
             <Form.Group>
