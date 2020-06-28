@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
-import artistService from '../../services/artist';
+import albumService from '../../services/album';
 
 export default class RemoveDialogComponent extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class RemoveDialogComponent extends React.Component {
   }
 
   handleRemove() {
-    artistService.remove(this.props.artistId)
+    albumService.remove(this.props.albumId)
       .then(() => {
         this.props.removed ();
       });
@@ -23,7 +23,7 @@ export default class RemoveDialogComponent extends React.Component {
     return (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Remove Artist</Modal.Title>
+          <Modal.Title>Remove Album</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           If you proceed this action this element will be permanently deleted from the system!

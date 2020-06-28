@@ -13,6 +13,7 @@ export default class SearchFormComponent extends React.Component {
     evt.preventDefault();
     this.props.search(this.state.text);
   }
+  
 
   render() {
     return (

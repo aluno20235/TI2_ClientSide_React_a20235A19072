@@ -8,7 +8,7 @@ export default class NavbarComponent extends React.Component {
     render() {
         const { user, logout } = this.context;
         return (
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar bg="dark" variant="dark" >
                 <Container>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">

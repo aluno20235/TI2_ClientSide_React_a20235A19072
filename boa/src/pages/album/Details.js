@@ -5,8 +5,11 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import albumService from "../../services/album";
 import RemoveDialogComponent from "../../components/album/RemoveDialog";
 import SubmitDialogComponent from "../../components/album/SubmitDialog";
+import AuthContext from "../../configs/authContext";
+import roles from "../../configs/roles";
 
 export default class AlbumDetailsPage extends React.Component {
+  static contextType = AuthContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +29,7 @@ export default class AlbumDetailsPage extends React.Component {
 
   render() {
     const { album, error, toRemove, toUpdate } = this.state;
-
+    const {user}=this.context;
     return (
       <Container>
         <Button variant="outline-primary" style={{ margin: "10px 0" }} onClick={() => this.props.history.goBack()}>
@@ -40,17 +43,19 @@ export default class AlbumDetailsPage extends React.Component {
               <Row>
                 <Col xs={6} md={8} lg={9}>
                   <h1>{album.album}</h1>
-                  <h5>{album._id}</h5>
+                  <h5>{album.artist}</h5>
+                  <h5>{album.year}</h5>
+                  <h5>{album.genre}</h5>
                   <br />
-                  <p>
+                  {user && <p>
                     <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>
                       Update
                     </Button>
                     &nbsp;
-                    <Button variant="danger" onClick={() => this.setState({ toRemove: true })}>
+                    {user.role===roles.Admin && <Button variant="danger" onClick={() => this.setState({ toRemove: true })}>
                       Remove
-                    </Button>
-                  </p>
+                    </Button>}
+                  </p>}
                 </Col>
               </Row>
             </Jumbotron>

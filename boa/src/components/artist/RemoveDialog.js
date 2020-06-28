@@ -40,7 +40,7 @@ export default class RemoveDialogComponent extends React.Component {
             disabled={!sure}
             onClick={() => this.handleRemove ()}
           >
-            Cancel
+            Remove
           </Button>
         </Modal.Footer>
       </Modal>

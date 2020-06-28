@@ -5,7 +5,7 @@ import "./Auth.css";
 export default class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "", role: 2 };
+    this.state = { username: "", password: "", email: "", name: "", role: 2 };
   }
   handleSubmit(evt) {
     evt.preventDefault();
@@ -15,7 +15,7 @@ export default class RegisterPage extends React.Component {
   }
 
   render() {
-    const { username, password, role } = this.state;
+    const { username, password, email, name, role } = this.state;
     return (
       <div id="auth-board">
         <Card style={{ width: "18rem" }}>
@@ -24,14 +24,35 @@ export default class RegisterPage extends React.Component {
               <Card.Title>Register</Card.Title>
               <Form.Group>
                 <Form.Label>Username</Form.Label>
-                <Form.Control value={username} onChange={(evt) => this.setState({ username: evt.target.value })} />
+                <Form.Control 
+                required true
+                value={username} 
+                onChange={(evt) => this.setState({ username: evt.target.value })} />
               </Form.Group>
               <Form.Group>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  required true
                   type="password"
                   value={password}
                   onChange={(evt) => this.setState({ password: evt.target.value })}
+                />
+                <Form.Group>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    required true
+                    type="email"
+                    value={email}
+                    onChange={(evt) => this.setState({ email: evt.target.value })}
+                  />
+                </Form.Group>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Nome</Form.Label>
+                <Form.Control
+                  required true
+                  value={name}
+                  onChange={(evt) => this.setState({ name: evt.target.value })}
                 />
               </Form.Group>
               <Form.Group>
