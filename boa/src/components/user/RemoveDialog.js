@@ -11,7 +11,8 @@ export default class RemoveDialogComponent extends React.Component {
   }
 
   handleRemove () {
-    userService.remove (this.props.userId).then (() => {
+    userService.remove (this.props.userId)
+    .then (() => {
       this.props.removed ();
     });
   }
@@ -40,7 +41,7 @@ export default class RemoveDialogComponent extends React.Component {
             disabled={!sure}
             onClick={() => this.handleRemove ()}
           >
-            Cancel
+            Remove
           </Button>
         </Modal.Footer>
       </Modal>
