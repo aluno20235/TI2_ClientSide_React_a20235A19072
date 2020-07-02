@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Col, Row, Jumbotron, Spinner, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import artistService from "../../services/artist";
 import RemoveDialogComponent from "../../components/artist/RemoveDialog";
 import SubmitDialogComponent from "../../components/artist/SubmitDialog";
@@ -47,16 +47,15 @@ const {user}=this.context;
                 </Col>
                 <Col xs={6} md={8} lg={9}>
                   <h1>{artist.artistname}</h1>
-                  <h5>{artist._id}</h5>
                   <h5>{artist.description}</h5>
                   <br />
                   {user && <p>
                     <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>
-                      Update
+                      <FontAwesomeIcon icon={faEdit} />
                     </Button>
                     &nbsp;
                     {user.role===roles.Admin && <Button variant="danger" onClick={() => this.setState({ toRemove: true })}>
-                      Remove
+                    <FontAwesomeIcon icon={faTrash} />
                     </Button>}
                   </p>}
                 </Col>

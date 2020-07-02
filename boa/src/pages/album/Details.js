@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Col, Row, Jumbotron, Spinner, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import albumService from "../../services/album";
 import RemoveDialogComponent from "../../components/album/RemoveDialog";
 import SubmitDialogComponent from "../../components/album/SubmitDialog";
@@ -49,11 +49,11 @@ export default class AlbumDetailsPage extends React.Component {
                   <br />
                   {user && <p>
                     <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>
-                      Update
+                    <FontAwesomeIcon icon={faEdit} />
                     </Button>
                     &nbsp;
                     {user.role===roles.Admin && <Button variant="danger" onClick={() => this.setState({ toRemove: true })}>
-                      Remove
+                    <FontAwesomeIcon icon={faTrash} />
                     </Button>}
                   </p>}
                 </Col>
