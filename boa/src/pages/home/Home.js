@@ -10,7 +10,7 @@ export default class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <br/>
           <p className="parag">
-            Bem-vindos à Biblioteca de Albúns BOA!!
+            Bem-vindos à Biblioteca de Álbuns BOA!!
         </p>
        
         </header>
