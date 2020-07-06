@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Table, Alert } from "react-bootstrap";
+import { Container, Button, Table, Alert, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo, faPlus, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import services from "../../services";
@@ -85,6 +85,22 @@ export default class AlbumListPage extends React.Component {
             ))}
           </tbody>
         </Table>
+        <div className="grid">
+          {albuns.map((album, index) => (
+            <Card style={{ width: '18rem' }} key={`album${index}`} className="box">
+
+              <Card.Img variant="top" src="holder.js/100px180" src={album.cover} />
+              <Card.Body>
+                <Card.Title>{album.album}</Card.Title>
+                <Button
+                  variant="outline-primary"
+                  onClick={() => this.props.history.push(`/album/details/${album._id}`)}>
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                </Button>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
       </Container>
     );
   }

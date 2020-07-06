@@ -54,7 +54,7 @@ export default class ArtistListPage extends React.Component {
             &nbsp;Add new artist
           </Button>
           {<SearchFormComponent
-            search={(text) => this.getList(text)} />}
+            search={(text) => this.getList(text)} />} 
         </div>
 
         <SubmitDialogComponent
