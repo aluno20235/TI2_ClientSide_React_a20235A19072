@@ -1,6 +1,8 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import artistService from "../../services/artist";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUndo, faSave } from "@fortawesome/free-solid-svg-icons";
 
 export default class SubmitDialogComponent extends React.Component {
   toEdit = false;
@@ -79,10 +81,10 @@ export default class SubmitDialogComponent extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => this.handleCancel()}>
-              Cancel
+            <FontAwesomeIcon icon={faUndo} />
             </Button>
             <Button variant="primary" type="submit">
-              Save
+              <FontAwesomeIcon icon={faSave}  />
             </Button>
           </Modal.Footer>
         </Form>

@@ -1,11 +1,13 @@
 import React from "react";
-import { Container, Button, Table, Alert } from "react-bootstrap";
+import { Container, Button, Table, Alert, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faInfo, faPlus, faIdCard, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import services from "../../services";
 import SubmitDialogComponent from "../../components/artist/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
 import "./Artist.css";
+
+
 
 export default class ArtistListPage extends React.Component {
   constructor(props) {
@@ -36,7 +38,7 @@ export default class ArtistListPage extends React.Component {
   }
 
   render() {
-    
+
     const { artists, error, toCreate } = this.state;
 
     return (
@@ -52,7 +54,7 @@ export default class ArtistListPage extends React.Component {
             &nbsp;Add new artist
           </Button>
           {<SearchFormComponent
-           search={(text) => this.getList(text)} />}
+            search={(text) => this.getList(text)} />}
         </div>
 
         <SubmitDialogComponent
@@ -78,13 +80,29 @@ export default class ArtistListPage extends React.Component {
                   <Button
                     variant="outline-primary"
                     onClick={() => this.props.history.push(`/artist/details/${artist._id}`)}>
-                    <FontAwesomeIcon icon={faInfo} />
+                    <FontAwesomeIcon icon={faInfoCircle} />
                   </Button>
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
+        <div className="grid">
+          {artists.map((artist, index) => (
+            <Card style={{ width: '18rem' }} key={`artist${index}`} className="box">
+
+              <Card.Img variant="top" src="holder.js/100px180" src={artist.photo} />
+              <Card.Body>
+                <Card.Title>{artist.artistname}</Card.Title>
+                <Button
+                  variant="outline-primary"
+                  onClick={() => this.props.history.push(`/artist/details/${artist._id}`)}>
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                </Button>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
       </Container>
     );
   }

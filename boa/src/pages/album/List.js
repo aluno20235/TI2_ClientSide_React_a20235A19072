@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Table, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faInfo, faPlus, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import services from "../../services";
 import SubmitDialogComponent from "../../components/album/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
@@ -78,7 +78,7 @@ export default class AlbumListPage extends React.Component {
                   <Button
                     variant="outline-primary"
                     onClick={() => this.props.history.push(`/album/details/${album._id}`)}>
-                    <FontAwesomeIcon icon={faInfo} />
+                    <FontAwesomeIcon icon={faInfoCircle} />
                   </Button>
                 </td>
               </tr>
