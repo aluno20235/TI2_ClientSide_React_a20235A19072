@@ -63,38 +63,12 @@ export default class ArtistListPage extends React.Component {
           submited={(createdArtist) => this.setState({ artists: [...artists, createdArtist], toCreate: false })}
         />
 
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Artist</th>
-              <th>Photo</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {artists.map((artist, index) => (
-              <tr key={`artist${index}`}>
-                <td>{artist.artistname}</td>
-                <td><img src={artist.photo} alt=""></img></td>
-                <td style={{ textAlign: "right" }}>
-                  <Button
-                    variant="outline-primary"
-                    onClick={() => this.props.history.push(`/artist/details/${artist._id}`)}>
-                    <FontAwesomeIcon icon={faInfoCircle} />
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-        <div className="grid">
-        <CardDeck>
-              {artists.map((artist, index) => (
-            <Card style={{ width: '18rem' }} key={`artist${index}`} className="box">
-
-              <Card.Img variant="top" src="holder.js/100px180" src={artist.photo} />
+        <div id="artistList">
+          {artists.map((artist, index) => (
+            <Card key={`artist${index}`}>
+              <Card.Img variant="top" src={artist.photo} />
               <Card.Body>
-                <Card.Title>{artist.artistname}</Card.Title>
+                <Card.Title>Artista : {artist.artistname}</Card.Title>
                 <Button
                   variant="outline-primary"
                   onClick={() => this.props.history.push(`/artist/details/${artist._id}`)}>
@@ -103,7 +77,6 @@ export default class ArtistListPage extends React.Component {
               </Card.Body>
             </Card>    
             ))}
-            </CardDeck>
         </div> 
       </Container>
     );

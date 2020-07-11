@@ -17,3 +17,4 @@ export default class PrivateRoute extends React.Component {
     );
   }
 }
+

@@ -21,7 +21,7 @@ export default class RemoveDialogComponent extends React.Component {
     const { show, handleClose } = this.props;
     const { sure } = this.state;
     return (
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Remove Genre</Modal.Title>
         </Modal.Header>

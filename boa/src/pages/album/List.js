@@ -36,7 +36,7 @@ export default class AlbumListPage extends React.Component {
   }
 
   render() {
-    
+
     const { albuns, error, toCreate } = this.state;
 
     return (
@@ -51,7 +51,7 @@ export default class AlbumListPage extends React.Component {
             <FontAwesomeIcon icon={faPlus} />
             &nbsp;Add new album
           </Button>
-          {<SearchFormComponent 
+          {<SearchFormComponent
             search={(text) => this.getList(text)} />}
         </div>
 
@@ -61,46 +61,23 @@ export default class AlbumListPage extends React.Component {
           submited={(createdAlbum) => this.setState({ albuns: [...albuns, createdAlbum], toCreate: false })}
         />
 
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Album</th>
-              <th>Artist</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {albuns.map((album, index) => (
-              <tr key={`album${index}`}>
-                <td>{album.album}</td>
-                <td>{album.artist}</td>
-                <td style={{ textAlign: "right" }}>
-                  <Button
-                    variant="outline-primary"
-                    onClick={() => this.props.history.push(`/album/details/${album._id}`)}>
-                    <FontAwesomeIcon icon={faInfoCircle} />
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-        <div className="grid">
+        <div id="albumList">
           {albuns.map((album, index) => (
-            <Card style={{ width: '18rem' }} key={`album${index}`} className="box">
-
-              <Card.Img variant="top" src="holder.js/100px180" src={album.cover} />
+            <Card key={`album${index}`}>
+              <Card.Img variant="top" src={album.cover} />
               <Card.Body>
-                <Card.Title>{album.album}</Card.Title>
+                <Card.Title >Album : {album.album}</Card.Title>
+                <Card.Subtitle className="mb 2 text muted">
+                  Artista : {album.artist}
+                </Card.Subtitle>
                 <Button
                   variant="outline-primary"
                   onClick={() => this.props.history.push(`/album/details/${album._id}`)}>
                   <FontAwesomeIcon icon={faInfoCircle} />
                 </Button>
               </Card.Body>
-            </Card>
-          ))}
-        </div>
+            </Card>))}
+            </div>
       </Container>
     );
   }

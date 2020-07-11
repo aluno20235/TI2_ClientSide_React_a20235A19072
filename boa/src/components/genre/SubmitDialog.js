@@ -43,7 +43,7 @@ export default class SubmitDialogComponent extends React.Component {
     const { genre, description } = this.state;
 
     return (
-      <Modal show={show} onHide={this.handleCancel}>
+      <Modal show={show} onHide={this.handleCancel} size="lg">
         <Modal.Header>
           <Modal.Title>{this.toEdit ? "Edit genre" : "Create genre"}</Modal.Title>
         </Modal.Header>

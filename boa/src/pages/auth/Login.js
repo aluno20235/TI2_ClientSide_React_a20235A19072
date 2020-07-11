@@ -9,7 +9,7 @@ export default class LoginPage extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { username: "admin", password: "123QWEasd" };
+    this.state = { username: "admin", password: "123qweASD" };
   }
 
   handleSubmit(evt) {
