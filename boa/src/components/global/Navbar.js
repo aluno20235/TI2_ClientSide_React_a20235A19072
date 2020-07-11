@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import AuthContext from "../../configs/authContext";
+import roles from "../../configs/roles";
+
 export default class NavbarComponent extends React.Component {
     static contextType = AuthContext;
 
@@ -22,12 +24,12 @@ export default class NavbarComponent extends React.Component {
                             <Nav.Link as={NavLink} to="/artist/list">
                                 Artistas
                   </Nav.Link>
-                            <Nav.Link as={NavLink} to="/genre/list">
+                            {user.role===roles.Admin && <Nav.Link as={NavLink} to="/genre/list">
                                 Géneros
-                  </Nav.Link>
-                            <Nav.Link as={NavLink} to="/user/list">
+                  </Nav.Link>}
+                            {user.role===roles.Admin && <Nav.Link as={NavLink} to="/user/list">
                                 Utilizadores
-                  </Nav.Link>
+                  </Nav.Link>}
                             <Nav.Link as={NavLink} to="/about">
                                 About
               </Nav.Link>
