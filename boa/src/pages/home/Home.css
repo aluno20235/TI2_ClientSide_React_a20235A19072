@@ -35,6 +35,18 @@ font-size: 30px;
   color: #61dafb;
 }
 
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: white;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -43,3 +55,4 @@ font-size: 30px;
     transform: rotate(360deg);
   }
 }
+

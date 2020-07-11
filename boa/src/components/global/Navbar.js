@@ -8,9 +8,10 @@ export default class NavbarComponent extends React.Component {
     render() {
         const { user, logout } = this.context;
         return (
-            <Navbar bg="dark" variant="dark" >
-                <Container>
-                    <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+                    <Navbar.Brand href="/">BOA</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
                             <Nav.Link as={NavLink} exact to="/">
                                 Home
@@ -43,7 +44,6 @@ export default class NavbarComponent extends React.Component {
                                 )}
                         </Nav>
                     </Navbar.Collapse>
-                </Container>
             </Navbar>
         );
     }

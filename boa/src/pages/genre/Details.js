@@ -43,7 +43,6 @@ export default class GenreDetailsPage extends React.Component {
               <Row>
                 <Col xs={6} md={8} lg={9}>
                   <h1>{genre.genre}</h1>
-                  <h5>{genre._id}</h5>
                   <h5>{genre.description}</h5>
                   <br />
                   {user && <p>

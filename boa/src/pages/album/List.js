@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Card, Alert } from "react-bootstrap";
+import { Container, Button, Table, Alert, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo, faPlus, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import services from "../../services";
