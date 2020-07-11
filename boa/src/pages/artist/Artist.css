@@ -9,6 +9,16 @@
     width: 100%;
   }
 
+  .imageSize{
+    width: 30rem;
+    height: 20rem;
+  }
+
+  .position{
+    margin-left: 20rem;
+
+  }
+
   #artistList {
     display: grid;
     grid-template-columns: repeat(5, 1fr);

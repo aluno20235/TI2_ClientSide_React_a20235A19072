@@ -11,18 +11,16 @@ export default class NavbarComponent extends React.Component {
         const { user, logout } = this.context;
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
-                    <Navbar.Brand href="/">BOA</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="mr-auto">
-                            <Nav.Link as={NavLink} exact to="/">
-                                Home
-              </Nav.Link>
-                            <Nav.Link as={NavLink} to="/album/list">
-                                Albuns
+                <img src="/icon.png" className="nav-logo" style={{width:80}} />
+                <Navbar.Brand href="/" >BOA</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link as={NavLink} to="/album/list">
+                            Albuns
                   </Nav.Link>
-                            <Nav.Link as={NavLink} to="/artist/list">
-                                Artistas
+                        <Nav.Link as={NavLink} to="/artist/list">
+                            Artistas
                   </Nav.Link>
                             {user.role===roles.Admin && <Nav.Link as={NavLink} to="/genre/list">
                                 Géneros
@@ -33,19 +31,19 @@ export default class NavbarComponent extends React.Component {
                             <Nav.Link as={NavLink} to="/about">
                                 About
               </Nav.Link>
-                        </Nav>
-                        <Nav>
-                            {user ? (
-                                <NavDropdown title={user.username} alignRight>
-                                    <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
-                                </NavDropdown>
-                            ) : (
-                                    <Nav.Link as={NavLink} to="/login">
-                                        Login
-                                    </Nav.Link>
-                                )}
-                        </Nav>
-                    </Navbar.Collapse>
+                    </Nav>
+                    <Nav>
+                        {user ? (
+                            <NavDropdown title={user.username} alignRight>
+                                <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
+                            </NavDropdown>
+                        ) : (
+                                <Nav.Link as={NavLink} to="/login">
+                                    Login
+                                </Nav.Link>
+                            )}
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
         );
     }

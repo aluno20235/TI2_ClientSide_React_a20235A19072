@@ -43,14 +43,14 @@ const {user}=this.context;
             <Jumbotron>
               <Row>
               <Col xs={6} md={4} lg={3}>
-                  {artist.photo && <img src={artist.photo} alt={artist.photo}></img>}
+                  {artist.photo && <img src={artist.photo} alt={artist.photo} className="imageSize"></img>}
                 </Col>
                 <Col xs={6} md={8} lg={9}>
-                  <h1>{artist.artistname}</h1>
-                  <h5>{artist.description}</h5>
+                  <h1 className="position">{artist.artistname}</h1>
+                  <h5 className="position">{artist.description}</h5>
                   <br />
                   {user && <p>
-                    <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>
+                    <Button className="position" variant="dark" onClick={() => this.setState({ toUpdate: true })}>
                       <FontAwesomeIcon icon={faEdit} />
                     </Button>
                     &nbsp;

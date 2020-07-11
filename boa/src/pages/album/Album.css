@@ -9,6 +9,16 @@
     width: 100%;
   }
 
+  .coverSize{
+    width: 25rem;
+    height: 25rem;
+  }
+
+  .textPosition{
+    margin-left: 10rem;
+
+  }
+
   #albumList {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
