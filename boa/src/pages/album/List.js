@@ -64,12 +64,10 @@ export default class AlbumListPage extends React.Component {
         <div id="albumList">
           {albuns.map((album, index) => (
             <Card key={`album${index}`}>
-              <Card.Img variant="top" src={album.cover} />
+              <Card.Img variant="top" src={album.cover} onClick={() => this.props.history.push(`/album/details/${album._id}`)} />
               <Card.Body>
                 <Card.Title >Album : {album.album}</Card.Title>
-                <Card.Subtitle className="mb 2 text muted">
-                  Artista : {album.artist}
-                </Card.Subtitle>
+                <Card.Subtitle >Artista : {album.artist}</Card.Subtitle>
                 <Button
                   variant="outline-primary"
                   onClick={() => this.props.history.push(`/album/details/${album._id}`)}>

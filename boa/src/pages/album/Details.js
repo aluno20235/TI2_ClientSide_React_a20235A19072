@@ -41,14 +41,17 @@ export default class AlbumDetailsPage extends React.Component {
           <div>
             <Jumbotron>
               <Row>
+              <Col xs={6} md={4} lg={3}>
+                  {album.cover && <img src={album.cover} alt={album.cover} className="coverSize"></img>}
+                </Col>
                 <Col xs={6} md={8} lg={9}>
-                  <h1>{album.album}</h1>
-                  <h5>{album.artist}</h5>
-                  <h5>{album.year}</h5>
-                  <h5>{album.genre}</h5>
+                  <h1 className="textPosition">{album.album}</h1>
+                  <h5 className="textPosition">{album.artist}</h5>
+                  <h5 className="textPosition">{album.year}</h5>
+                  <h5 className="textPosition">{album.genre}</h5>
                   <br />
                   {user && <p>
-                    <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>
+                    <Button className="textPosition" variant="dark" onClick={() => this.setState({ toUpdate: true })}>
                     <FontAwesomeIcon icon={faEdit} />
                     </Button>
                     &nbsp;

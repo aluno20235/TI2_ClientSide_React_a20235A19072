@@ -40,7 +40,7 @@ export default class SubmitDialogComponent extends React.Component {
     } else {
       this.props.submited(albumData);
     }
-  }  
+  }
 
   handleCancel() {
     this.setState(this.getFormState());
@@ -55,7 +55,7 @@ export default class SubmitDialogComponent extends React.Component {
 
   render() {
     const { show } = this.props;
-    const { album, genre, year, artist} = this.state;
+    const { album, genre, year, artist } = this.state;
 
     return (
       <Modal show={show} onHide={this.handleCancel} size="lg">
@@ -64,45 +64,45 @@ export default class SubmitDialogComponent extends React.Component {
         </Modal.Header>
         <Form onSubmit={(evt) => this.handleSubmit(evt)}>
           <Modal.Body>
-          <Form.Group>
+            <Form.Group>
               <Form.Label>Album</Form.Label>
-              <Form.Control 
-              value={album} 
-              onChange={(evt) => this.setState({ album: evt.target.value })} />
+              <Form.Control
+                value={album}
+                onChange={(evt) => this.setState({ album: evt.target.value })} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Genre</Form.Label>
               <Form.Control
-              value={genre} 
-              onChange={(evt) => this.setState({ genre: evt.target.value })} />
+                value={genre}
+                onChange={(evt) => this.setState({ genre: evt.target.value })} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Year</Form.Label>
-              <Form.Control 
-              value={year} 
-              pattern="[0-2][0-9][0-9][0-9]"
-              onChange={(evt) => this.setState({ year: evt.target.value })} />
+              <Form.Control
+                value={year}
+                pattern="[0-2][0-9][0-9][0-9]"
+                onChange={(evt) => this.setState({ year: evt.target.value })} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Artist</Form.Label>
-              <Form.Control 
-              value={artist} 
-              onChange={(evt) => this.setState({ artist: evt.target.value })} />
+              <Form.Control
+                value={artist}
+                onChange={(evt) => this.setState({ artist: evt.target.value })} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Cover</Form.Label>
-              <Form.Control 
-              type="file" 
-              onChange={(evt) => this.handleSelectCover(evt)} />
+              <Form.Control
+                type="file"
+                onChange={(evt) => this.handleSelectCover(evt)} />
             </Form.Group>
 
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => this.handleCancel()}>
-            <FontAwesomeIcon icon={faUndo} />
+              <FontAwesomeIcon icon={faUndo} />
             </Button>
             <Button variant="primary" type="submit">
-            <FontAwesomeIcon icon={faSave}  />
+              <FontAwesomeIcon icon={faSave} />
             </Button>
           </Modal.Footer>
         </Form>

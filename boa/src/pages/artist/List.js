@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Button, Table, Alert, Card, CardGroup, CardDeck, Row, Col} from "react-bootstrap";
+import { Container, Button, Alert, Card} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo, faPlus, faIdCard, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import {faPlus, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import services from "../../services";
 import SubmitDialogComponent from "../../components/artist/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
@@ -66,7 +66,7 @@ export default class ArtistListPage extends React.Component {
         <div id="artistList">
           {artists.map((artist, index) => (
             <Card key={`artist${index}`}>
-              <Card.Img variant="top" src={artist.photo} />
+              <Card.Img variant="top" src={artist.photo} onClick={() => this.props.history.push(`/artist/details/${artist._id}`)} />
               <Card.Body>
                 <Card.Title>Artista : {artist.artistname}</Card.Title>
                 <Button

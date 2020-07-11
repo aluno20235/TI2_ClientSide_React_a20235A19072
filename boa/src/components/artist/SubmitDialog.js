@@ -71,9 +71,8 @@ export default class SubmitDialogComponent extends React.Component {
 
             <Form.Group>
               <Form.Label>Description</Form.Label>
-              <Form.Control value={description} onChange={(evt) => this.setState({ description: evt.target.value })} />
+              <textarea className="form-control" value={description} onChange={(evt) => this.setState({ description: evt.target.value })}/>
             </Form.Group>
-
             <Form.Group>
               <Form.Label>Photo</Form.Label>
               <Form.Control type="file" onChange={(evt) => this.handleSelectPhoto(evt)} />
