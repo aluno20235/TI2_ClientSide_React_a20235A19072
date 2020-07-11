@@ -38,7 +38,7 @@ export default class SubmitDialogComponent extends React.Component {
     const { username, role, email, name } = this.state;
 
     return (
-      <Modal show={show} onHide={this.handleCancel}>
+      <Modal show={show} onHide={this.handleCancel} size="lg">
         <Modal.Header>
           <Modal.Title>Edit user</Modal.Title>
         </Modal.Header>

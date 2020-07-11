@@ -15,25 +15,32 @@ export default class SubmitDialogComponent extends React.Component {
 
   getFormState() {
     return this.toEdit
-      ? { ...this.props.album }
-      : { album: "", genre: "", year: "", artist: "", cover:"" };
+      ? { ...this.props.album, cover: null }
+      : { album: "", genre: "", year: "", artist: "", cover: null };
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
+    const jsonData = (({ album, genre, year, artist }) => ({ album, genre, year, artist }))(
+      this.state
+    );
     if (this.toEdit) {
-      const { _id } = this.props.album;
-      albumService
-        .update(_id, this.state)
-        .then(() => this.props.submited({ ...this.state, _id }))
-        .catch(ex => console.log(ex));
+      const { _id, cover } = this.props.album;
+      albumService.update(_id, jsonData).then(() => this.handleCoverSubmit({ ...jsonData, _id, cover }));
     } else {
-      albumService
-        .create(this.state)
-        .then(result => this.props.submited({ ...this.state, _id: result._id }))
-        .catch(ex => console.log(ex));
+      albumService.create(jsonData).then((result) => this.handleCoverSubmit({ ...jsonData, _id: result._id }));
     }
   }
+
+  handleCoverSubmit(albumData) {
+    if (this.state.cover) {
+      albumService.setCover(albumData._id, this.state.cover).then((result) => {
+        this.props.submited({ ...albumData, cover: result.url });
+      });
+    } else {
+      this.props.submited(albumData);
+    }
+  }  
 
   handleCancel() {
     this.setState(this.getFormState());
@@ -48,10 +55,10 @@ export default class SubmitDialogComponent extends React.Component {
 
   render() {
     const { show } = this.props;
-    const { album, genre, year, artist, cover} = this.state;
+    const { album, genre, year, artist} = this.state;
 
     return (
-      <Modal show={show} onHide={this.handleCancel}>
+      <Modal show={show} onHide={this.handleCancel} size="lg">
         <Modal.Header>
           <Modal.Title>{this.toEdit ? "Edit album" : "Create album"}</Modal.Title>
         </Modal.Header>
@@ -60,21 +67,18 @@ export default class SubmitDialogComponent extends React.Component {
           <Form.Group>
               <Form.Label>Album</Form.Label>
               <Form.Control 
-              required true
               value={album} 
               onChange={(evt) => this.setState({ album: evt.target.value })} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Genre</Form.Label>
               <Form.Control
-               required true
               value={genre} 
               onChange={(evt) => this.setState({ genre: evt.target.value })} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Year</Form.Label>
               <Form.Control 
-              required true
               value={year} 
               pattern="[0-2][0-9][0-9][0-9]"
               onChange={(evt) => this.setState({ year: evt.target.value })} />
@@ -82,7 +86,6 @@ export default class SubmitDialogComponent extends React.Component {
             <Form.Group>
               <Form.Label>Artist</Form.Label>
               <Form.Control 
-              required true
               value={artist} 
               onChange={(evt) => this.setState({ artist: evt.target.value })} />
             </Form.Group>
