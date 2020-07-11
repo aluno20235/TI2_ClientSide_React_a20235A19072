@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Table, Alert, Card } from "react-bootstrap";
+import { Container, Button, Table, Alert, Card, CardGroup, CardDeck, Row, Col} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo, faPlus, faIdCard, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import services from "../../services";
@@ -88,7 +88,8 @@ export default class ArtistListPage extends React.Component {
           </tbody>
         </Table>
         <div className="grid">
-          {artists.map((artist, index) => (
+        <CardDeck>
+              {artists.map((artist, index) => (
             <Card style={{ width: '18rem' }} key={`artist${index}`} className="box">
 
               <Card.Img variant="top" src="holder.js/100px180" src={artist.photo} />
@@ -100,9 +101,10 @@ export default class ArtistListPage extends React.Component {
                   <FontAwesomeIcon icon={faInfoCircle} />
                 </Button>
               </Card.Body>
-            </Card>
-          ))}
-        </div>
+            </Card>    
+            ))}
+            </CardDeck>
+        </div> 
       </Container>
     );
   }
