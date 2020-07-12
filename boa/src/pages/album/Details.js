@@ -42,7 +42,7 @@ export default class AlbumDetailsPage extends React.Component {
             <Jumbotron>
               <Row>
               <Col xs={6} md={4} lg={3}>
-                  {album.cover && <img src={album.cover} alt={album.cover} className="coverSize"></img>}
+                  {album.cover && <img src={album.cover} alt={album.cover} className="coverSize" onClick={() => this.props.history.push(`/album/list`)}></img>}
                 </Col>
                 <Col xs={6} md={8} lg={9}>
                   <h1 className="textPosition">{album.album}</h1>

@@ -43,7 +43,7 @@ const {user}=this.context;
             <Jumbotron>
               <Row>
               <Col xs={6} md={4} lg={3}>
-                  {artist.photo && <img src={artist.photo} alt={artist.photo} className="imageSize"></img>}
+                  {artist.photo && <img src={artist.photo} alt={artist.photo} className="imageSize" onClick={() => this.props.history.push(`/artist/list`)}></img>}
                 </Col>
                 <Col xs={6} md={8} lg={9}>
                   <h1 className="position">{artist.artistname}</h1>
