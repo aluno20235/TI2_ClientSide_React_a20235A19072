@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Col, Row, Jumbotron, Spinner, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import genreService from "../../services/genre";
 import RemoveDialogComponent from "../../components/genre/RemoveDialog";
 import SubmitDialogComponent from "../../components/genre/SubmitDialog";
@@ -32,7 +32,7 @@ export default class GenreDetailsPage extends React.Component {
     const { user } = this.context;
     return (
       <Container>
-        <Button variant="outline-primary" style={{ margin: "10px 0" }} onClick={() => this.props.history.goBack()}>
+        <Button variant="outline-secondary" style={{ margin: "10px 0" }} onClick={() => this.props.history.goBack()}>
           <FontAwesomeIcon icon={faArrowLeft} />
           &nbsp;Back to list
         </Button>
@@ -47,11 +47,11 @@ export default class GenreDetailsPage extends React.Component {
                   <br />
                   {user && <p>
                     <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>
-                      Update
+                    <FontAwesomeIcon icon={faEdit} />
                     </Button>
                     &nbsp;
                     {user.role===roles.Admin && <Button variant="danger" onClick={() => this.setState({ toRemove: true })}>
-                      Remove
+                    <FontAwesomeIcon icon={faTrash} />
                     </Button>}
                   </p>}
                 </Col>

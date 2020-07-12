@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Col, Row, Jumbotron, Spinner, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import userService from "../../services/user";
 import RemoveDialogComponent from "../../components/user/RemoveDialog";
 import SubmitDialogComponent from "../../components/user/SubmitDialog";
@@ -42,8 +42,7 @@ export default class UserDetailsPage extends React.Component {
             <Jumbotron>
               <Row>
                 <Col xs={6} md={8} lg={9}>
-                  <h1>Username : {user.username}</h1>
-                  <h5>User id : {user._id}</h5>
+                  <h1>{user.username}</h1>
                   {user.role===roles.Admin && <h5>Role : Admin</h5>}
                   {user.role===roles.Contributor && <h5>Role : Contributor</h5>}
                   <h5>Name : {user.name}</h5>
@@ -51,11 +50,11 @@ export default class UserDetailsPage extends React.Component {
                   <br />
                   <p>
                     <Button variant="dark" onClick={() => this.setState({ toUpdate: true })}>
-                      Update
+                    <FontAwesomeIcon icon={faEdit} />
                     </Button>
                     &nbsp;
                     <Button variant="danger" onClick={() => this.setState({ toRemove: true })}>
-                      Remove
+                    <FontAwesomeIcon icon={faTrash} />
                     </Button>
                   </p>
                 </Col>

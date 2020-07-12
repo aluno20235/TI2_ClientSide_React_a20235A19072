@@ -47,13 +47,13 @@ export default class ArtistListPage extends React.Component {
 
         <div className="buttons-container">
           <Button
-            variant="outline-primary"
+            variant="outline-secondary"
             style={{ alignSelf: "flex-start" }}
             onClick={() => this.setState({ toCreate: true })}>
             <FontAwesomeIcon icon={faPlus} />
-            &nbsp;Add new artist
+            &nbsp;New Artist
           </Button>
-          {<SearchFormComponent
+          {<SearchFormComponent 
             search={(text) => this.getList(text)} />} 
         </div>
 
@@ -68,12 +68,14 @@ export default class ArtistListPage extends React.Component {
             <Card key={`artist${index}`}>
               <Card.Img variant="top" src={artist.photo} onClick={() => this.props.history.push(`/artist/details/${artist._id}`)} />
               <Card.Body>
-                <Card.Title>Artista : {artist.artistname}</Card.Title>
-                <Button
+                <Card.Title>Artista : 
+                  <br></br>
+                {artist.artistname}</Card.Title>
+           {/*      <Button
                   variant="outline-primary"
                   onClick={() => this.props.history.push(`/artist/details/${artist._id}`)}>
                   <FontAwesomeIcon icon={faInfoCircle} />
-                </Button>
+                </Button> */}
               </Card.Body>
             </Card>    
             ))}

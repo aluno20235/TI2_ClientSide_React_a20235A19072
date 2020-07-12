@@ -45,13 +45,13 @@ export default class AlbumListPage extends React.Component {
 
         <div className="buttons-container">
           <Button
-            variant="outline-primary"
+            variant="outline-secondary"
             style={{ alignSelf: "flex-start" }}
             onClick={() => this.setState({ toCreate: true })}>
             <FontAwesomeIcon icon={faPlus} />
-            &nbsp;Add new album
+            &nbsp;New Album
           </Button>
-          {<SearchFormComponent
+          {<SearchFormComponent 
             search={(text) => this.getList(text)} />}
         </div>
 
@@ -68,11 +68,11 @@ export default class AlbumListPage extends React.Component {
               <Card.Body>
                 <Card.Title >Album : {album.album}</Card.Title>
                 <Card.Subtitle >Artista : {album.artist}</Card.Subtitle>
-                <Button
+              {/*   <Button
                   variant="outline-primary"
                   onClick={() => this.props.history.push(`/album/details/${album._id}`)}>
                   <FontAwesomeIcon icon={faInfoCircle} />
-                </Button>
+                </Button> */}
               </Card.Body>
             </Card>))}
             </div>

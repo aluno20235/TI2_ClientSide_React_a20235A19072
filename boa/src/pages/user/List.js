@@ -65,7 +65,7 @@ export default class UserListPage extends React.Component {
                                 <td>{user.username}</td>
                                 <td style={{ textAlign: "right" }}>
                                     <Button
-                                        variant="outline-primary"
+                                        variant="outline-secondary"
                                         onClick={() => this.props.history.push(`/user/details/${user._id}`)}>
                                         <FontAwesomeIcon icon={faInfo} />
                                     </Button>

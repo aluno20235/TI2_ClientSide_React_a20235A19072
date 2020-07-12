@@ -33,7 +33,7 @@ export default class ArtistDetailsPage extends React.Component {
 const {user}=this.context;
     return (
       <Container>
-        <Button variant="outline-primary" style={{ margin: "10px 0" }} onClick={() => this.props.history.goBack()}>
+        <Button variant="outline-secondary" style={{ margin: "10px 0" }} onClick={() => this.props.history.goBack()}>
           <FontAwesomeIcon icon={faArrowLeft} />
           &nbsp;Back to list
         </Button>

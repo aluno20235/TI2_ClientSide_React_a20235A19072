@@ -45,11 +45,11 @@ export default class GenreListPage extends React.Component {
 
         <div className="buttons-container">
           <Button
-            variant="outline-primary"
+            variant="outline-secondary"
             style={{ alignSelf: "flex-start" }}
             onClick={() => this.setState({ toCreate: true })}>
             <FontAwesomeIcon icon={faPlus} />
-            &nbsp;Add new genre
+            &nbsp;New Genre
           </Button>
           {<SearchFormComponent
            search={(text) => this.getList(text)} />}
@@ -74,7 +74,7 @@ export default class GenreListPage extends React.Component {
                 <td>{genre.genre}</td>
                 <td style={{ textAlign: "right" }}>
                   <Button
-                    variant="outline-primary"
+                    variant="outline-secondary"
                     onClick={() => this.props.history.push(`/genre/details/${genre._id}`)}>
                     <FontAwesomeIcon icon={faInfo} />
                   </Button>

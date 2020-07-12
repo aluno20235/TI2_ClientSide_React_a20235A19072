@@ -1,6 +1,8 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import genreService from "../../services/genre";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUndo, faSave } from "@fortawesome/free-solid-svg-icons";
 
 export default class SubmitDialogComponent extends React.Component {
   toEdit = false;
@@ -56,16 +58,16 @@ export default class SubmitDialogComponent extends React.Component {
 
             <Form.Group>
               <Form.Label>Description</Form.Label>
-              <Form.Control required true value={description} onChange={(evt) => this.setState({ description: evt.target.value })} />
+              <textarea className="form-control" value={description} onChange={(evt) => this.setState({ description: evt.target.value })}/>
             </Form.Group>
 
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => this.handleCancel()}>
-              Cancel
+            <FontAwesomeIcon icon={faUndo}/>
             </Button>
             <Button variant="primary" type="submit">
-              Save
+            <FontAwesomeIcon icon={faSave}/>
             </Button>
           </Modal.Footer>
         </Form>
