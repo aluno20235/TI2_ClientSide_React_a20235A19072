@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Button, Table, Alert, Card } from "react-bootstrap";
+import { Container, Button, Alert, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfo, faPlus, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import services from "../../services";
 import SubmitDialogComponent from "../../components/album/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
@@ -78,7 +78,7 @@ export default class AlbumListPage extends React.Component {
                 </Button>
               </Card.Body>
             </Card>))}
-            </div>
+        </div>
       </Container>
     );
   }

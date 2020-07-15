@@ -45,10 +45,10 @@ export default class AlbumDetailsPage extends React.Component {
                   {album.cover && <img src={album.cover} alt={album.cover} className="coverSize"></img>}
                 </Col>
                 <Col xs={6} md={8} lg={9}>
-                  <h1 className="textPosition">{album.album}</h1>
-                  <h5 className="textPosition">{album.artist}</h5>
-                  <h5 className="textPosition">{album.year}</h5>
-                  <h5 className="textPosition">{album.genre}</h5>
+                  <h1 className="textPosition">Album : {album.album}</h1>
+                  <h5 className="textPosition">Artista : {album.artist}</h5>
+                  <h5 className="textPosition">Ano : {album.year}</h5>
+                  <h5 className="textPosition">Género : {album.genre}</h5>
                   <br />
                   {user && <p>
                     <Button className="textPosition" variant="dark" onClick={() => this.setState({ toUpdate: true })}>
