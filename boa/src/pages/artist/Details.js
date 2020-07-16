@@ -30,7 +30,7 @@ export default class ArtistDetailsPage extends React.Component {
 
   render() {
     const { artist, error, toRemove, toUpdate } = this.state;
-const {user}=this.context;
+    const {user}=this.context;
     return (
       <Container>
         <Button variant="outline-secondary" style={{ margin: "10px 0" }} onClick={() => this.props.history.goBack()}>

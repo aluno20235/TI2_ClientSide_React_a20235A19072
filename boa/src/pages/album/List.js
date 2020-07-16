@@ -6,6 +6,8 @@ import services from "../../services";
 import SubmitDialogComponent from "../../components/album/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
 import "./Album.css";
+import AuthContext from "../../configs/authContext";
+import roles from "../../configs/roles";
 
 export default class AlbumListPage extends React.Component {
   constructor(props) {
@@ -38,13 +40,13 @@ export default class AlbumListPage extends React.Component {
   render() {
 
     const { albuns, error, toCreate } = this.state;
-
+  
     return (
       <Container>
         {error !== undefined && <Alert variant="danger">{error}</Alert>}
 
         <div className="buttons-container">
-          <Button
+         <Button
             variant="outline-secondary"
             style={{ alignSelf: "flex-start" }}
             onClick={() => this.setState({ toCreate: true })}>
