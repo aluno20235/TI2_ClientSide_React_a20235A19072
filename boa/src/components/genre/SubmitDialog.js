@@ -53,7 +53,7 @@ export default class SubmitDialogComponent extends React.Component {
           <Modal.Body>
             <Form.Group>
               <Form.Label>Genre</Form.Label>
-              <Form.Control required true value={genre} onChange={(evt) => this.setState({ genre: evt.target.value })} />
+              <Form.Control value={genre} onChange={(evt) => this.setState({ genre: evt.target.value })} />
             </Form.Group>
 
             <Form.Group>

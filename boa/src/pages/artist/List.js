@@ -6,10 +6,13 @@ import services from "../../services";
 import SubmitDialogComponent from "../../components/artist/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
 import "./Artist.css";
+import AuthContext from "../../configs/authContext";
+
 
 
 
 export default class ArtistListPage extends React.Component {
+  static contextType = AuthContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -40,6 +43,7 @@ export default class ArtistListPage extends React.Component {
   render() {
 
     const { artists, error, toCreate } = this.state;
+    const { user } = this.context;
 
     return (
       <Container>

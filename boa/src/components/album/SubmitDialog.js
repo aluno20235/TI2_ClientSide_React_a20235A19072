@@ -3,6 +3,9 @@ import { Modal, Button, Form} from "react-bootstrap";
 import albumService from "../../services/album";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUndo, faSave } from "@fortawesome/free-solid-svg-icons";
+import genreService from "../../services/genre";
+import artistService from "../../services/artist";
+
 
 export default class SubmitDialogComponent extends React.Component {
   toEdit = false;
@@ -15,14 +18,25 @@ export default class SubmitDialogComponent extends React.Component {
 
   getFormState() {
     return this.toEdit
-      ? { ...this.props.album, cover: null }
-      : { album: "", genre: "", year: "", artist: "", cover: null };
+      ? { form: this.props.album, cover: null, genres: [], artists: [] }
+      : { form: { album: "", genre: 0, year: "", artist: 0 }, cover: null, genres: [], artists: [] };
+  }
+
+  componentDidMount() {
+    genreService
+    .getAll('')
+    .then((value) => this.setState({ genres: value }))
+    .catch((err) => this.setState({ error: err }));
+    artistService
+    .getAll('')
+    .then((value) => this.setState({ artists: value }))
+    .catch((err) => this.setState({ error: err }));
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
     const jsonData = (({ album, genre, year, artist }) => ({ album, genre, year, artist }))(
-      this.state
+      this.state.form
     );
     if (this.toEdit) {
       const { _id, cover } = this.props.album;
@@ -55,9 +69,10 @@ export default class SubmitDialogComponent extends React.Component {
 
   render() {
     const { show } = this.props;
-    const { album, genre, year, artist } = this.state;
+    const { album, genre, year, artist } = this.state.form;
 
     return (
+
       <Modal show={show} onHide={this.handleCancel} size="lg">
         <Modal.Header>
           <Modal.Title>{this.toEdit ? "Edit album" : "Create album"}</Modal.Title>
@@ -68,26 +83,34 @@ export default class SubmitDialogComponent extends React.Component {
               <Form.Label>Album</Form.Label>
               <Form.Control
                 value={album}
-                onChange={(evt) => this.setState({ album: evt.target.value })} />
+                onChange={(evt) => this.setState({form:{...this.state.form,album: evt.target.value }})} />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Genre</Form.Label>
               <Form.Control
+                as="select"
                 value={genre}
-                onChange={(evt) => this.setState({ genre: evt.target.value })} />
+                onChange={(evt) => this.setState({form:{...this.state.form, genre: evt.target.value }})}>
+                <option value='0'>Escolhe um género</option>
+                {this.state.genres.map((genre) =>
+                  <option key={genre._id} value={genre.genre}>{genre.genre}</option>)}
+              </Form.Control>
+            </Form.Group>
+            <Form.Group>
+              <Form.Control
+                as="select"
+                value={artist}
+                onChange={(evt) => this.setState({form:{...this.state.form,artist: evt.target.value }})}>
+                  <option value='0'>Escolhe um artista</option>
+                {this.state.artists.map((artist) =>
+                  <option key={artist._id} value={artist.artistname}>{artist.artistname}</option>)}
+              </Form.Control>
             </Form.Group>
             <Form.Group>
               <Form.Label>Year</Form.Label>
               <Form.Control
                 value={year}
                 pattern="[0-2][0-9][0-9][0-9]"
-                onChange={(evt) => this.setState({ year: evt.target.value })} />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Artist</Form.Label>
-              <Form.Control
-                value={artist}
-                onChange={(evt) => this.setState({ artist: evt.target.value })} />
+                onChange={(evt) => this.setState({form:{...this.state.form,year: evt.target.value }})} />
             </Form.Group>
             <Form.Group>
               <Form.Label>Cover</Form.Label>
@@ -95,7 +118,6 @@ export default class SubmitDialogComponent extends React.Component {
                 type="file"
                 onChange={(evt) => this.handleSelectCover(evt)} />
             </Form.Group>
-
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => this.handleCancel()}>
