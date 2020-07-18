@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Alert, Card} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faPlus, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import {faPlus } from "@fortawesome/free-solid-svg-icons";
 import services from "../../services";
 import SubmitDialogComponent from "../../components/artist/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
@@ -43,7 +43,6 @@ export default class ArtistListPage extends React.Component {
   render() {
 
     const { artists, error, toCreate } = this.state;
-    const { user } = this.context;
 
     return (
       <Container>

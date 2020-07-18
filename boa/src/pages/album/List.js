@@ -1,13 +1,12 @@
 import React from "react";
 import { Container, Button, Alert, Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import services from "../../services";
 import SubmitDialogComponent from "../../components/album/SubmitDialog";
 import SearchFormComponent from "../../components/global/SearchForm";
 import "./Album.css";
 import AuthContext from "../../configs/authContext";
-import roles from "../../configs/roles";
 
 export default class AlbumListPage extends React.Component {
   static contextType = AuthContext;
